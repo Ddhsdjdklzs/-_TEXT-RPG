@@ -1,0 +1,1008 @@
+importPackage(javax.mail, javax.mail.internet);
+
+Device.acquireWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, '');
+
+this.console = {};
+
+this.console.log = str => {
+  
+ Log.i(str);
+ 
+ return true; 
+  
+};
+
+const FS = FileStream;
+
+const Path = '/sdcard/광질게임/';
+
+const rankingPath = '/sdcard/랭킹.json';
+
+if(!FS.read(rankingPath)) FS.write(rankingPath, JSON.stringify([], null, 4));
+
+const Lw = '\u200b'.repeat(500);
+
+const adminHash = [1219072785];
+
+const pickaxenames = ["성스러운", "더러운", "빛나는", "네모난", "사랑의", "에프킬라가 뿌려진", "아주 크고 긴", "아주 작고 짧은", "평범한", "철", "돌", "금", "[Object object]", "Array", "숙련자의", "때깔 고운", "진득한", "2% 부족한", "찐득한", "말랑말랑한", "좀 더 견고한", "냄새나는", "요상한"];
+const titles = ["거지 깽깽이", "원 펀치 쓰리 강냉이", "변태", "몽상가", "못생긴", "기부천사", "[Object object]", "Array", "심심한 백수", "취미는 광질이올시다", "숨겨진 파신도", "광질에 재능있는", "<{[◇]}>", "광물 수집가", "대단한", "곡괭이 수집가", "반짝반짝", "바브", "대머리", "뿌자", "주식의 신", "나는 노담 너는 노답", "항상 배고픈 사람", "깡패", "키보드워리어", "잼민이", "인생 종친", "평생 모솔", "짝사랑 1년차", "색다른 매력의", "대두", "모기 사냥꾼", "먹보", "잠만 자는", "게임 중독자", "고인물", "재벌 2세", "커플", "내일부터 탈모시작", "owo"];
+
+//일반
+const ore1 = ["돌", "구리", "철", "동", "납","아연", "석회석", "현무암", "화강암","편마암", "석회암", "응회암", "석록암", "규정석", "남정석", "십자석", "홍주석", "감람석", "각섬석", "암염", "자갈", "점토", "이암"];
+const gram1 = ["30~60", "60~120", "100~175", "70~120", "100~150", "140~200", "160~245", "155~250", "147~240", "150~245", "160~260", "150~250", "150~245", "170~267", "170~256", "175~265", "173~273", "180~280", "184~284", "134~160", "20~50", "34~66", "70~134"];
+
+//희귀
+const ore2 = ["옥", "사금", "금", "백금", "석영", "흑요석", "사파이어", "티타늄", "자수정", "쿤자이트"];
+const gram2 = ["600~777", "400~500", "650~840", "625~800", "610~778", "640~790~", "666~888", "675~830", "665~850", "630~777"];
+
+//영웅
+const ore3 = ["핑크 다이아몬드", "다이아몬드", "블루 다이아몬드", "핑크 사파이어", "그린 사파이어", "옐로우 사파이어", "토파즈", "화이트 토파즈", "블루 토파즈", "레인보우 다이아몬드", "에레메이파이트", "베니토아이트", "머스그레이비트"];
+const gram3 = ["1400~2000", "1300~1800", "1350~1870", "1350~1900", "1350~1900", "1350~1900", "1275~1845", "1320~1895", "1320~1895", "1500~2150", "1356~1879", "1287~1800", "1375~1940"];
+
+//전설
+const ore4 = ["로들라이트", "스피넬", "아이올라이트", "칼세도니", "토멀린", "아메트린", "레드 베릴", "지르콘", "그란디디어라이트", "로도크로사이트", "헤소나이트", "안달루사이트", "데만토이드가넷", "파이어 오팔"];
+const gram4 = ["2100~2780", "2150~1800", "2150~1800", "2135~1790", "2130~1780", "1250~1811", "1300~1875", "1230~1777", "1250~1850", "1238~1765", "1235~1770", "1235~1770", "1240~1775", "1280~1935"];
+
+//초월
+const ore5 = ["빛나는 돌🌟", "태양의 돌☀", "마법의 돌💠", "시간의 돌🕒", "화염의 돌🔥", "얼음의 돌❄", "태풍의 돌🌪", "번개의 돌⚡", "무지개 돌🌈", "황금의 돌⚜", "달의 돌🌕", "자연의 돌🌳", "사랑의 돌❤", "마그마의 돌🌋", "파도의 돌🌊", "운석 조각☄", "고대 유물⛰", "미생물🦠", "Do it! 자바스크립트 기본 편📙", "주사위🎲", "은하수🌌", "별똥별🌠"];
+const gram5 = ["666000~666000", "555000~555000", "678000~678000", "864000~864000", "646000~646000", "777000~777000", "787000~787000", "656000~656000", "666666~666666", "787878~787878", "888888~888888", "737373~737373", "876678~876678", "868686~868686", "678678~678678", "1000000~1000000", "1000000~1000000", "500000~500000", "787878~787878", "1234560~1234560", "9898989~9898989", "8765432~8765432"];
+
+//영원
+const ore6 = ["우주의 끝🌌", "지구🌏", "공허🔳", "멈춰버린 시간🕛", "어둠으로 물든 태양⚫", "α°"];
+const gram6 = ["1e+240_888888888888", "6000000000000_555555555555", "-1_999999999999", "0_864864864864", "666_555000555000", "2761_2761276127612761"];
+
+//이벤트초월
+const ore7 = [""];
+const gram7 = [""];
+
+function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
+    
+  var hashCode = new java.lang.String(imageDB.getProfileHash());
+  
+  var Time = new Date().getTime();
+  
+  var s = user(sender);
+  
+  var ranking = JSON.parse(FS.read(rankingPath));
+      
+  if(msg == '*가입'){
+    
+    if(!user(sender)){
+      
+      userData = {
+        
+        "nickname": sender, //닉네임
+        
+        "hash": Number(hashCode), //해시코드
+        
+        "G": 1000, //골드
+        
+        "pickaxe": { //곡괭이
+          
+          "LV": 1, //강화레벨
+          
+          "name": '낡은 나무', //이름
+          
+          "time": 30000, //채굴속도(ms)
+          
+          "Ecost": 500, //강화바용
+          
+          "miningexp": 0 //경험치
+          
+        },
+        
+        "ore": [], //광물
+        
+        "hunger": { //허기
+          
+          "max": 1000, //최대치
+          
+          "now": 1000, //현재 허기
+          
+          "ct": 100000000000 //쿨타임
+          
+        },
+        
+        "gg": 0, //광질
+        
+        "title": '(뉴비 광부)', //칭호
+        
+        "Ban": false //밴 여부 
+             
+      };
+      
+      FS.write(Path + sender + '.json', JSON.stringify(userData, null, 4));
+      
+      s = user(sender);
+      
+      ranking.push(
+      
+      {
+        
+        'name': sender,
+        
+        'exp': s.pickaxe.miningexp
+        
+      }
+      
+      );
+      
+      Rset(ranking);
+                                       
+      replier.reply('광질게임에 오신것을 환영합니다!\n"*도움말"을 입력해보세요.'), replier.reply('(지원금 1000 G)');
+      
+      return;
+            
+    } else {
+      
+      replier.reply('이미 가입하셨습니다!');
+      
+      return;
+            
+    }
+    
+  }
+  
+  if(msg == 'h') replier.reply(hashCode);
+  
+  if(msg == '*도움말') replier.reply ('[ 광질게임 도움말 ]' + Lw + '\n\n\n-《 접두사 : * 》-\n\n\n💾┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 가입 ] : 광질게임에 가입합니다.\n\n💻┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 곡괭이 ] : 곡괭이 정보를 봅니다.\n\n[ 골드 ] : 소유 골드량을 봅니다.\n\n[ 골드 (유저닉네임) ] : 해당 유저의 소유 골드량을 봅니다\n\n[ 허기 ] : 현재 배고픔 상태를 봅니다.\n             (허기가 다 닳게 되면 광질을 못합니다.)\n\n🏧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 송금 (유저닉네임) (골드) ] : 해당 유저에게 골드를 송금합니다.\n\n[ 광물전송 (유저닉네임) (광물번호) ] : 해당 유저에게 광물을 전송합니다.\n\n⛏┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 칭호 뽑기 ] : 칭호를 뽑습니다.\n\n[ 곡괭이 뽑기 ] : 곡괭이를 뽑습니다. (강화유지)\n\n[ 곡괭이 강화 ] : 곡괭이를 강화하여 채굴속도를 올립니다.\n\n[ 곡괭이 연속강화 ] : 골드를 전부 사용하여 곡괭이를 연속으로 강화합니다.\n\n🪨┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 광질 ] : 광물을 채굴합니다.\n\n[ 광질 종료 ] : 광질을 종료합니다.\n\n[ 광물 ] : 가진 광물을을 봅니다.\n\n[ 판매 (광물번호) ] : 해당 번호의 광물을 판매합니다.\n\n[ 일괄판매 ] : 모든 광물을 판매합니다.\n\n[ 잠금 (광물번호) ] : 해당 번호의 광물을 잠금합니다.\n\n[ 잠금해제 (광물번호) ] : 해당 번호의 광물을 잠금해제 합니다.\n\n[ 판매값 (광물번호) ] : 해당 번호의 광물의 판매값을 봅니다.\n\n[ 일괄판매값 ] : 일괄판매값을 봅니다.\n\n🥖┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 빵집 ] : 허기를 채워줄 빵들을 봅니다.\n\n🏆┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 랭킹 ] : 경험치 랭킹을 봅니다.\n\n🛠┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n[ 인첸트 ] : 자신의 인첸트 상태를 봅니다.(곡괭이 500레벨 이상 사용가능)\n\n[ 인첸트 (슬롯번호) ] : 해당 슬롯에 인첸트를 합니다.(곡괭이 500레벨 이상 사용가능)\n\n👨‍💻┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n\n\nver 2.9.0');
+  
+  if(msg.startsWith('*') && !user(sender)) { replier.reply('가입을 해주세요!'); return; }
+  
+  if(msg.startsWith('*')) msg = msg.slice(1);
+  
+  else return;
+  
+  if(s.Ban) { replier.reply('밴 상태입니다.'); return; }
+  
+  if(s.hash != hashCode && sender != "네몽") { replier.reply('관리자 호출바람.\nError code 440\n'+hashCode); return; }
+   
+    if(msg.startsWith('eval ')){
+      
+    if(!adminHash.includes(Number(hashCode))) return;
+      
+      try {
+        
+        let x = java.lang.System.nanoTime();
+        
+        replier.reply (eval(msg.slice(4)));
+        
+        replier.reply ('Runtime : ' + (java.lang.System.nanoTime() - x) + 'ns');
+        
+      } catch(e){
+        
+        replier.reply('line : (' + e.lineNumber + ')\n\n' + e);
+        
+      }
+      
+   } 
+   
+   if(!s.hunger.ct) { s.hunger.ct = 100000000000; set(sender, s); }
+   
+  if(msg == '곡괭이') replier.reply(s.title + '\n[ ' + sender + ' ] 님의 곡괭이⛏\n\n\n' + s.pickaxe.name + ' 곡괭이 (Lv.' + s.pickaxe.LV + ')\n경험치 : ' + nuum(s.pickaxe.miningexp));
+  
+  if(msg == '골드') replier.reply(s.title + '\n[ ' + sender + ' ] 님의 💰골드💰 : \n' + nuum(s.G) + ' G');
+  
+  if(msg.startsWith('골드 ')){
+    
+    let i = user(msg.slice(3).replace('@',''));
+    
+    if(!i) { replier.reply('존재하지 않는 유저입니다!'); return; }
+    
+    replier.reply(i.title + '\n[ ' + i.nickname + ' ] 님의 💰골드💰 : \n' + nuum(i.G) + ' G');
+    
+  }
+  
+  if(s.pickaxe.LV == 500 && !s.ect) { s.ect = [{name: '없음', 'value': '없음', 'sb': ''}, {name: '없음', 'value': '없음', 'sb': ''}, {name: '없음', 'value': '없음', 'sb': ''}]; set(sender, s); }
+  
+  if(msg == '허기') replier.reply(s.title + '\n[ ' + sender + ' ] 님의 허기🍖\n\n' + gauge(s.hunger.now, s.hunger.max, 0, 1));
+  
+  if(msg == '칭호 뽑기'){
+    
+    if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }
+    
+    if(s.G >= 1000){
+      
+      let e = titles[random(0, titles.length)];
+      
+      replier.reply('"' + e + '" 칭호를 뽑으셨습니다!');
+      
+      s.title = e;
+      
+      s.G -= 1000; 
+      
+      set(sender, s);
+      
+    } else {
+      
+     replier.reply('골드가 부족합니다!');
+     
+     return;
+          
+    }
+    
+  }
+  
+  if(msg == '곡괭이 뽑기'){
+    
+  if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }
+    
+  if(s.G >= 1000) {
+    
+    let e = pickaxenames[random(0, pickaxenames.length)];
+    
+    replier.reply('"' + e + ' 곡괭이" 를 뽑았습니다!');
+    
+    s.pickaxe.name = e;
+   
+    s.G -= 1000;
+    
+    set(sender, s);
+    
+  } else {
+    
+    replier.reply('골드가 부족합니다!');
+    
+    return;
+    
+    }
+    
+  }
+  
+  if(msg == '곡괭이 강화'){
+    
+   if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }
+    
+   if(s.pickaxe.LV >= 500) { replier.reply('최대레벨 입니다!'); return; }
+   
+   if(s.pickaxe.Ecost >= s.G) { replier.reply('강화비용이 ' + num(s.pickaxe.Ecost - s.G) + " G 부족합니다!"); return; }
+   
+   s.pickaxe.LV += 1;
+   
+   s.G -= s.pickaxe.Ecost;
+      
+   s.pickaxe.Ecost = Math.floor(s.pickaxe.Ecost * 1.131);
+   
+   s.pickaxe.time -= 22.5;
+   
+   s.pickaxe.miningexp += 5;
+   
+   ranking[ranking.findIndex(x => x.name == sender)].exp = s.pickaxe.miningexp;
+      
+   replier.reply('강화 성공!\n\n[ ' + (s.pickaxe.LV - 1) + ' ] => [ ' + s.pickaxe.LV + ' ]');
+   
+   set(sender, s);
+   
+   Rset(ranking);
+    
+  }
+  
+  if(msg == '곡괭이 연속강화'){
+    
+    if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }                                                                                                                                                                
+    
+    if(s.pickaxe.Ecost > s.G) { replier.reply('강화비용이 부족합니다!'); return; }
+    
+    if(s.pickaxe.LV >= 500) { replier.reply('최대레벨 입니다!'); return; }
+    
+    replier.reply('🔨강화중...');
+    
+    let f = 0;
+    
+     for(i=0;s.pickaxe.Ecost<s.G;i++){
+      
+      if(s.pickaxe.LV >= 500) break;
+            
+      s.G -= s.pickaxe.Ecost;
+      
+      s.pickaxe.Ecost = Math.floor(s.pickaxe.Ecost * 1.0131);
+      
+      s.pickaxe.LV += 1;
+      
+      s.pickaxe.miningexp += 5;
+      
+      s.pickaxe.time -= 44;
+      
+      ranking[ranking.findIndex(x => x.name == sender)].exp = s.pickaxe.miningexp;
+      
+      set(sender, s);
+      
+      Rset(ranking);
+      
+      f++;
+      
+      }
+    
+    const c = (s.pickaxe.LV == 500) ? '🎉500레벨 달성 축하드립니다!!🎉\n\n' : '강화 성공!\n\n';
+    
+    replier.reply(c + '[ Lv.' + (s.pickaxe.LV - f) + ' ] => [ Lv.' + s.pickaxe.LV + ' ]');
+    
+  }  
+  
+  if(msg == '광질'){
+    
+    if(0 >= s.hunger.now) { replier.reply('배가 고픕니다!'); return; }
+    
+    if(s.gg == 1) { replier.reply('이미 광질 중입니다.'); return; }
+    
+    s.gg = 1;
+    
+   set(sender, s);
+   
+   replier.reply(s.title + '\n' + sender + '님이 광물을 찾는중....');
+   
+   let mn = 0;
+    
+   s.ect.(x => {        //여깅빈다
+     
+     if(x.name == '채굴시간 감소'){
+       
+       mn += x.value * 1000;
+       
+     }
+     
+   });
+   
+   java.lang.Thread.sleep(s.pickaxe.time - mn);
+   
+   if(user(sender).gg == 0) return;
+   
+   let dd = random(0,1001)
+   
+   let e;
+   
+   if(dd < 300){ e = 1; }
+   
+   else if(dd < 570 && dd > 300){ e = 2; }
+   
+   else if(dd < 800 && dd > 570){ e = 3; }
+   
+   else if(dd > 800 && dd < 990){ e = 4; }
+   
+   else if(dd > 990 && dd < 995){ e = 5; }
+   
+   else if(dd > 995 && dd < 1001){ e = 6; }
+   
+   let t = Math.random() * eval('ore' + e).length|0;
+         
+   let ee; 
+   
+   if(e == 6){
+   
+     ee = eval('gram' + e)[t].split('_');
+     
+     } else {
+       
+      ee = eval('gram' + e)[t].split('~');
+       
+     }
+   
+   let eee;
+   
+   if(e == 6){
+     
+     eee = Number(ee[0]);
+     
+   } else {
+   
+    eee = random(Number(ee[0]),Number(ee[1]));
+   
+   }
+   
+   let eeee = eee + 'g ';
+   
+   var tt;
+   
+   var ra;
+   
+   
+   if(e == 1){ tt = 1.25; ra = '일반'; }
+   
+   else if(e == 2){ tt = 1.5; ra = '희귀'; }
+   
+   else if(e == 3){ tt = 1.75; ra = '영웅'; }
+   
+   else if(e == 4){ tt = 2; ra = '전설'; }
+   
+   else if(e == 5){ tt = 3; ra = '초월'; }
+   
+   else if(e == 6){ tt = 1; ra = '영원'; }
+   
+      
+   replier.reply(sender + '님이 ' + eeee + eval('ore' + e)[t] + eval('ore' + e)[t] + ' 채굴하셨습니다' + ((e == 6) ? '!!' : '.'));
+   
+   s.gg = 0;
+   
+   let nm = random(40, 80);
+   
+   s.ect.map(x => {
+     
+    if(x.name == '허기 소비량 감소') nm -= x.value;
+     
+   });
+   
+   s.hunger.now -= nm;
+   
+   if(0 > s.hunger.now) s.hunger.now = 0;
+   
+   let nmm = 1;
+   
+   s.ect.map(x => {
+
+     
+   if(x.name == '경험치 획득량 증가'){
+     
+    nmm += 1;
+     
+   }
+     
+   });
+   
+   s.pickaxe.miningexp += nmm;
+   
+   ranking[ranking.findIndex(x => x.name == sender)].exp = s.pickaxe.miningexp;
+   
+   Rset(ranking);
+      
+   s.ore.push({'name': eval('ore' + e)[t], 'g': eee, 'cost': ((e == 6) ? Number(ee[1]) : Math.floor(eee * tt)), 'lock': false, 'rank': ra}); 
+   
+   s.ore = s.ore.sort((x, y) => y.cost - x.cost);
+   
+   set(sender, s);
+    
+  }
+  
+  if(msg=='광질 종료') { replier.reply('광질이 종료되었습니다!'); s.gg=0; set(sender, s); }
+  
+  if(msg == '광물'){
+    
+    let e = '';
+    
+    for(i=0;i<s.ore.length;i++){
+      
+      let r = (s.ore[i].lock) ? '(🔒)' : '';
+      
+      e += '{ ' + (i + 1) + ' } ' + r + '\n[' + s.ore[i].rank + '] ' + s.ore[i].name + '(' + s.ore[i].g + 'g)\n\n';
+            
+    }
+    
+    if(JSON.stringify(s.ore) == '[]') e = '가방이 비었습니다.';
+        
+    replier.reply(s.title + '\n[ ' + sender + ' ] 님의 광물가방' + Lw + '\n\n\n' + e);
+    
+  }
+  
+  if(msg.startsWith('판매 ')){
+    
+    if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }
+    
+    const sg = Number(msg.slice(3));
+    
+    if(!s.ore[sg - 1]) { replier.reply('해당 번호의 광물이 없습니다!'); return; }
+    
+    if(s.ore[sg - 1].lock) { replier.reply('잠금된 광물입니다!'); return; }
+    
+    if(isNaN(sg)) { replier.reply('?'); return; }
+    
+    replier.reply(josa.r(s.ore[sg - 1].name, '을/를') + ' 판매하여 ' + s.ore[sg - 1].cost + ' G 를 획득하였습니다!');
+    
+    s.G += s.ore[sg - 1].cost;
+    
+    s.ore.splice(sg - 1, 1);
+    
+    set(sender, s);
+    
+  }
+  
+  if(msg == '일괄판매'){
+    
+    if(s.gg == 1) { replier.reply('광질중에는 이용하실 수 없습니다!'); return; }
+    
+    if(s.ore.length == 0) { replier.reply('판매할 광물이 없습니다!'); return; }
+    
+    replier.reply('💱판매중...');
+    
+    let cg = 0;
+    
+    let f = 0;
+    
+    for(i = 0; i < s.ore.length; i++){
+      
+      if(s.ore[i].lock) continue;
+      
+      cg += s.ore[i].cost;
+            
+      f++;
+            
+    }
+    
+    for(i = 0; i < s.ore.length; i++){
+      
+      if(s.ore[i].lock) continue;      
+      
+      s.ore.splice(i, 1);
+      
+    }
+    
+    s.G += cg;
+    
+    set(sender, s);
+    
+    replier.reply('총 ' + f + '개의 광물을 판매하여 ' + cg + ' G 를 획득하였습니다!');
+    
+    
+  }
+  
+  if(msg == '빵집') replier.reply('[ pickaxe bakery ] \n\n\n1.🍞식빵\n허기 회복량 : 500\n가격 : 1000 G\n\n2.🥖바게트\n허기 회복량 : 1000\n가격 : 5000 G\n특수효과 : 최대 허기 50 증가\n\n3.🥐크루아상\n허기 회복량 : 1000\n가격 : 5 경험치\n\n4.🍩도넛\n허기회복량 : 5000\n가격 : 50000 G\n\n5.🥪샌드위치\n허기회복량 : 0\n가격 : 100000 G\n특수효과 : 허기 최대치 100 증가\n\n\n명령어 : 구매 (빵이름)');
+  
+  if(msg == '구매 식빵'){
+    
+   if(s.G < 1000) { replier.reply('골드가 부족합니다!'); return; }
+   
+   if(s.hunger.now >= s.hunger.max) { replier.reply('배 터져요!!'); return; }
+   
+   if(1000 > Time - s.hunger.ct) { replier.reply('목 막혀오..'); return; }
+    
+    s.G -= 1000;
+    
+    s.hunger.now += 500;
+    
+    if(s.hunger.now > s.hunger.max) s.hunger.now = s.hunger.max;
+    
+    s.hunger.ct = Time;
+        
+    replier.reply('허기 250이 채워졌습니다!');
+    
+    set(sender, s);
+    
+  }
+  
+  if(msg == '구매 바게트'){
+    
+    if(s.G < 5000) { replier.reply('골드가 부족합니다!'); return; }
+    
+    if(s.hunger.now >= s.hunger.max) { replier.reply('배 터져요!!'); return; }
+    
+    if(5000 > Time - s.hunger.ct) { replier.reply('목 막혀오..'); return; }
+    
+    s.G -= 5000;
+    
+    s.hunger.now += 1000;
+    
+    s.hunger.max += 50;
+    
+    if(s.hunger.now > s.hunger.max) s.hunger.now = s.hunger.max;
+    
+    s.hunger.ct = Time;
+        
+    replier.reply('허기 750 회복!\n허기 최대치 50 증가!');
+    
+    set(sender, s);
+             
+  }
+  
+  if(msg == '구매 크루아상'){
+    
+    const mp = s.pickaxe.miningexp;
+    
+    if(5 > mp){ replier.reply('경험치가 부족합니다!'); return; }
+    
+    if(s.hunger.now >= s.hunger.max) { replier.reply('배 터져요!!'); return; }
+    
+    if(1500 > Time - s.hunger.ct) { replier.reply('목 막혀오..'); return; }
+    
+    s.pickaxe.miningexp -= 5;
+    
+    replier.reply('허기 1000이 채워졌습니다.');
+    
+    s.hunger.now += 1000;
+    
+    if(s.hunger.now > s.hunger.max) s.hunger.now = s.hunger.max;
+    
+    ranking[ranking.findIndex(x => x.name == sender)].exp = s.pickaxe.miningexp;
+   
+    Rset(ranking);
+    
+    s.hunger.ct = Time;
+    
+    set(sender, s);
+    
+  }
+  
+  if(msg == '구매 도넛'){
+    
+    if(50000 > s.G) { replier.reply('골드가 부족합니다!'); return; }
+    
+    if(s.hunger.now >= s.hunger.max || s.hunger.max < 5000) { replier.reply('배 터져요!!'); return; }
+    
+    if(6500 > Time - s.hunger.ct) { replier.reply('목 막혀오..'); return; }
+    
+    s.G -= 50000;
+    
+    s.hunger.now += 5000;
+    
+    if(s.hunger.now > s.hunger.max) s.hunger.now = s.hunger.max;
+    
+    s.hunger.ct = Time;
+    
+    replier.reply('허기 5000 회복 완료!');
+    
+    set(sender, s);
+        
+  }
+  
+  if(msg == '구매 샌드위치'){
+    
+   if(100000 > s.G) { replier.reply('골드가 부족합니다!'); return; }
+    
+    if(s.hunger.now >= s.hunger.max) { replier.reply('배 터져요!!'); return; }
+    
+    if(8000 > Time - s.hunger.ct) { replier.reply('목 막혀오..'); return; }
+    
+    s.G -= 100000;
+    
+    s.hunger.max += 100;
+    
+    s.hunger.ct = Time;
+    
+    replier.reply('허기 최대치 100 증가!');
+    
+    set(sender, s);
+    
+  }
+   
+   if(/^송금 @?(.+) (\d+)$/.test(msg)){
+     
+    let ta = RegExp.$1.trim();
+        
+    let gold = Math.floor(+RegExp.$2);
+    
+    if(gold > s.G) { replier.reply('돈이 없는데요....?'); return; }
+    
+    if(!user(ta)) { replier.reply('누구한테 송금을 하시는....?'); return; }
+    
+    if(gold == 0) { replier.reply('주는 의미가 있을까요....'); return; }
+    
+    var a = user(ta);
+    
+    a.G += gold;
+    
+    s.G -= gold;
+    
+    set(ta, a);
+    
+    set(sender, s);
+    
+    replier.reply('송금 완료!');
+         
+   }
+  
+  if(msg.startsWith('잠금 ')){
+    
+    const mg = Number(msg.slice(3));
+    
+    if(!s.ore[mg - 1]) { replier.reply('해당 번호의 광물이 없습니다!'); } 
+    
+    s.ore[mg - 1].lock = true;
+    
+    replier.reply(s.ore[mg - 1].name + ' 잠금되었습니다!');
+    
+    set(sender, s);
+    
+  }
+  
+  if(msg.startsWith('잠금해제 ')){
+    
+    const gs = Number(msg.slice(5));
+    
+     if(isNaN(gs)) { replier.reply('?'); return; }
+     
+     if(!s.ore[gs - 1]) { replier.reply('해당 번호의 광물이 없습니다!'); }
+     
+     if(!s.ore[gs - 1].lock) { replier.reply('해당 번호의 광물이 잠금상태가 아닙니다!'); }
+     
+     s.ore[gs - 1].lock = false;
+     
+     replier.reply(s.ore[gs - 1].name + ' 잠금해제 되었습니다!');
+     
+     set(sender, s);
+    
+  }
+  
+  if(/^광물전송 @?(.+) (\d+)$/.test(msg)){
+    
+    let ta = RegExp.$1.trim();
+    
+    let on = +RegExp.$2
+    
+    if(!s.ore[on - 1]) { replier.reply('해당 번호의 광물이 없습니다!'); return; }
+    
+    if(s.ore[on - 1].lock) { replier.reply('해당 번호의 광물이 잠금상태 입니다!'); return; }
+    
+    if(!user(ta)) { replier.reply('존재하지 않는 유저입니다!'); return; }
+    
+    var u = user(ta);
+    
+    u.ore.push(s.ore[on - 1]);  
+    
+    u.ore = u.ore.sort((x, y) => y.cost - x.cost);
+    
+    s.ore.splice(on - 1, 1);
+    
+    set(ta, u);
+    
+    set(sender, s);
+    
+    replier.reply('전송 완료!');
+              
+  }
+  
+  if(msg == '랭킹'){
+    
+    let text = '[ 🏆 경험치 랭킹 🏆 ]' + Lw + '\n\n\n';
+    
+    var rk = ranking;
+    
+    rk = rk.sort((x, y) => y.exp - x.exp);
+      
+    for(let i = 0; i < 20; i++){
+      
+      text += '{ ' + m(i + 1) + ' } [ ' + rk[i].name + ' ] : ' + rk[i].exp + '\n\n';
+      
+    }
+    
+    replier.reply(text);
+    
+  }
+  
+  if(msg == '인첸트'){
+    
+    if(s.pickaxe.LV < 500) { replier.reply('곡괭이 500레벨 이상 인첸트가 가능합니다!'); return; }
+    
+    replier.reply('[ ' + sender + ' ] 님의 인첸트 상태\n\n--' + s.ect[0].name + ' ' + s.ect[0].sb + s.ect[0].value + '\n--' + s.ect[1].name + ' ' + s.ect[1].sb + s.ect[1].value + '\n--' + s.ect[2].name + ' ' + s.ect[2].sb + s.ect[2].value);
+    
+  }
+  
+  if(msg.startsWith('인첸트 ')){
+    
+    if(s.pickaxe.LV < 500) { replier.reply('곡괭이 500레벨 이상 인첸트가 가능합니다!'); }
+    
+    if(s.G < 1000000) { replier.reply('골드가 부족합니다!'); return; }
+    
+    num = Number(msg.slice(4));
+    
+    if(num > 3 || 0 > num || isNaN(num)) return;
+    
+    num -= 1;
+    
+    ect = [{'name': '행운', 'value': random(1, 4), 'sb': '+'}, {'name': '채굴시간 감소', 'value': random(1, 3), 'sb': '+'}, {'name': '경험치 획득량 증가', 'value': 1, 'sb': '+'}, {'name': '허기 소비량 감소', 'value': random(5, 13), 'sb': '+'}];
+    
+    s.G -= 1000000;
+    
+    s.ect[num] = ect[random(0,4)];
+    
+    set(sender, s);
+    
+    replier.reply('[ ' + sender + ' ] 님의 인첸트 상태\n\n--' + s.ect[0].name + ' ' + s.ect[0].sb + s.ect[0].value + '\n--' + s.ect[1].name + ' ' + s.ect[1].sb + s.ect[1].value + '\n--' + s.ect[2].name + ' ' + s.ect[2].sb + s.ect[2].value);
+    
+  }
+  
+  if(msg.startsWith('판매값 ')){
+    
+    se = Number(msg.slice(4));
+    
+    if(isNaN(se) || !se) { replier.reply('제대로 입력해주세요!'); return; }
+    
+    replier.reply(s.ore[se - 1].name + '의 판매값은 ' + nuum(s.ore[se - 1].cost) + '원 입니다.');
+    
+  }
+  
+  if(msg == '일괄판매값'){
+    
+    let numm = 0;
+    
+    s.ore.map(x => numm += x.cost);
+    
+    replier.reply('광물 ' + s.ore.length + '개의 일괄판매값은 ' + nuum(numm) + "원 입니다."); 
+    
+  }
+  
+}
+
+function user(nickname){
+  
+  return JSON.parse(FS.read(Path + nickname + '.json'));
+   
+}
+
+function nuum(num){
+  
+  if(num == 0) return 0;
+  
+  return (String(num).split('').reverse().reduce((acc, curr, index) => acc.concat((index + 1) % 4 === 0 ? [curr, (['만', '억', '조', '경', '해', '자', '양', '구', '간', '정', '재', '극', '항하사', '아승기', '나유타', '불가사의', '무량대수'][index / 4 | 0] || '').concat(' ')] : curr), []).reverse().join('').split(/(\D+)(\d{4})/).map((e) => /\D/.test(e) ? e : (Number(e) || '')).join('').replace(/^\D+| \D+/g, ' ').trim());
+  
+}
+
+function gauge(num, max, p, n){
+  
+    let bar = ['▏', '▏', '▎', '▍', '▌', '▋', '▊', '▉'];
+    
+    let per = 100/(max/num)/10;
+    
+    let gauge = [];
+    
+    for(let i=0; i<parseInt(per); i++) gauge.push('█');
+    
+    if(per != parseInt(per)) gauge.push(bar[parseInt((per-gauge.length)*10/1.25)]);
+        
+    for(let i=gauge.length; i<10; i++) gauge.push(' ');
+    
+    if(!p) p = 0; if(!n) n = 0;
+    
+    return gauge.join('')+
+    
+        (!p?'': ' ('+(per*10).toFixed(0) + '%)')+
+        
+        (!n?'':' ('+num+'/'+max+')');
+        
+}
+
+function set(nickname, ob){
+  
+  if(!user(nickname)) return false;
+  
+  FS.write(Path + nickname + '.json', JSON.stringify(ob, null, 4));
+  
+  return true;  
+  
+}
+
+function Rset(ob){ 
+  
+  FS.write(rankingPath, JSON.stringify(ob, null, 4));
+  
+  return true;
+  
+}
+
+function altHash(nickname, hashCode){
+  
+  if(!user(nickname)) return false;
+  
+  var a = user(nickname);
+  
+  a.hash = hashCode;
+  
+  set(nickname, a);
+  
+  return true;
+  
+}
+
+function random(s, b){
+  
+  return Math.floor(Math.random() * (b - s)) + s;
+  
+}
+
+String.prototype.Ban = function() {
+  
+  if(!user(this)) return '존재하지 않는 사용자.';
+  
+  var a = user(this);
+  
+  a.Ban = true;
+  
+  set(this, a);
+  
+  return this + ".Ban = true";
+  
+};
+
+String.prototype.Pardon = function() {
+  
+  if(!user(this)) return '존재하지 않는 사용자.';
+  
+  var a = user(this);
+  
+  a.Ban = false;
+  
+  set(this, a);
+  
+  return '"' + this + '".Ban = false';
+  
+};
+
+function m(num){
+  
+  switch(num){
+    
+    case 1:
+    
+    return '🥇';
+    
+    case 2:
+    
+    return '🥈';
+    
+    case 3: 
+    
+    return '🥉';
+    
+  }
+  
+  return num + '위';
+  
+}
+
+function makeMaze(yyy,xxx){
+
+  yyy |= 1;
+
+  xxx |= 1;
+
+  var arr = Array(yyy).fill().map(a => Array(xxx).fill('■'));
+
+  var visit = Array(yyy).fill().map(a => Array(xxx).fill(false));
+
+  var pq = new java.util.PriorityQueue;
+
+  var tmp = [];
+
+  tmp[1] = [0, 0];
+
+  pq.add(1);
+
+  arr[0][0] = '□';
+
+  visit[0][0] = true;
+
+  var dir = [1, 0, 0, 1, -1, 0, 0, -1];
+
+  while(!pq.empty){
+
+    var r = Number(pq.poll());
+
+    var y = tmp[r][0];
+    
+    var x = tmp[r][1];
+
+    delete tmp[r];
+
+    for(var i = 0; i < 4; i++){
+
+      var yy = y + dir[i * 2];
+
+      var xx = x + dir[i * 2 + 1];
+
+      if(yy >= 0 && xx >= 0 && yy < yyy / 2 && xx < xxx / 2 && !visit[yy][xx]){
+
+      visit[yy][xx] = true;
+
+      arr[yy * 2][xx * 2] = '□';
+      
+      arr[yy * 2 - dir[i * 2]][xx * 2 - dir[i * 2 + 1]] = '□';
+
+      var rn = Math.random();
+
+      while(rn in tmp) rn = Math.random();
+
+      tmp[rn] = [yy, xx];
+
+      pq.add(rn);
+
+      }
+
+    }
+
+  }
+
+  delete pq;
+
+  delete visit;
+
+  delete tmp;
+
+  return arr.map(a => a.join('')).join('\n');
+
+}

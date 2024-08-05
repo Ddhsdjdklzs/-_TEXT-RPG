@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatting Game</title>
+    <style>
+        body {
+            background-image: url('https://i.imgur.com/1AAAAA.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        #chatbox {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000000;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        #messageInput {
+            width: 300px;
+        }
+    </style>
+    <script>
+        // Function to display messages in the chat box
+        function displayMessage(sender, message) {
+            var chatbox = document.getElementById("chatbox");
+            var newMessage = document.createElement("p");
+            newMessage.innerHTML = "<strong>" + sender + ":</strong> " + message;
+            chatbox.appendChild(newMessage);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Function to send a message
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var message = messageInput.value;
+
+            if (message!== "") {
+                displayMessage("You", message);
+                messageInput.value = "";
+                receiveMessage();
+            }
+        }
+
+        // Function to simulate receiving a message
+        function receiveMessage() {
+            var messages = [
+                "Hello!",
+                "How are you?",
+                "What's your favorite color?",
+                "Do you like playing games?",
+                "What's your favorite food?"
+            ];
+
+            var randomIndex = Math.floor(Math.random() * messages.length);
+            var randomMessage = messages[randomIndex];
+
+            setTimeout(function() {
+                displayMessage("Friend", randomMessage);
+            }, 1000);
+        }
+
+        // Function to handle Enter key press in the message input
+        document.getElementById("messageInput").addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Chatting Game</h1>
+
+    <div id="chatbox"></div>
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+</body>
+</html>
