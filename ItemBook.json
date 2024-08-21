@@ -1,0 +1,421 @@
+{
+    "일반" : [
+        {
+            "Name" : "강철 주괴",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "철광석", "Rank" : "일반", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "구리 광석",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "구리 슬라브",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "구리 주괴", "Rank" : "일반", "Amount" : 4} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "구리 주괴",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "구리 광석", "Rank" : "일반", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "돌",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "모래",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "석탄",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "소나무",
+            "Type" : "Wood",
+            "Explain" : ""
+        },
+        {
+            "Name" : "유리",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "모래", "Rank" : "일반", "Amount" : 3} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "유리병",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "유리", "Rank" : "일반", "Amount" : 4} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "은",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "은 주괴",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "은", "Rank" : "일반", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "자수정",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "참나무",
+            "Type" : "Wood",
+            "Explain" : ""
+        },
+        {
+            "Name" : "철광석",
+            "Type" : "Ore",
+            "Explain" : ""
+        }
+    ],
+    "희귀" : [
+        {
+            "Name" : "강철 나사",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 주괴", "Rank" : "일반", "Amount" : 10} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "강철 막대",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 주괴", "Rank" : "일반", "Amount" : 20} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "강철 판",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 주괴", "Rank" : "일반", "Amount" : 25} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "구리 판",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "구리 주괴", "Rank" : "일반", "Amount" : 25} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "금 주괴",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "금광석", "Rank" : "희귀", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "금광석",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "돌 가루",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "돌", "Rank" : "일반", "Amount" : 7}, {"Name" : "모래", "Rank" : "일반", "Amount" : 3} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "얼음",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "에메랄드",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "용암",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "자수정 가루",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "자수정", "Rank" : "일반", "Amount" : 3}, {"Name" : "돌 가루", "Rank" : "희귀", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "초록기어",
+            "Type" : "Ore",
+            "Explain" : ""
+        }
+    ],
+    "초희귀" : [
+        {
+            "Name" : "금판",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "금 주괴", "Rank" : "희귀", "Amount" : 25} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "붉은 구리 주괴",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "구리 주괴", "Rank" : "일반", "Amount" : 10}, {"Name" : "금 주괴", "Rank" : "희귀", "Amount" : 3} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "석유",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "은판",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "은 주괴", "Rank" : "일반", "Amount" : 25} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "철 크리스탈",
+            "Type" : "Perc_Ore",
+            "TargetOre" : {"Name" : "철광석", "Rank" : "일반"},
+            "Perc" : [30],
+            "Explain" : ""
+        },
+        {
+            "Name" : "파란기어",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "하급 마력석",
+            "Type" : "Ore",
+            "Explain" : ""
+        }
+    ],
+    "영웅" : [
+        {
+            "Name" : "금 크리스탈",
+            "Type" : "Perc_Ore",
+            "TargetOre" : {"Name" : "금광석", "Rank" : "희귀"},
+            "Perc" : [15],
+            "Explain" : ""
+        },
+        {
+            "Name" : "다이아몬드",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "드럼통",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 주괴", "Rank" : "일반", "Amount" : 30}, {"Name" : "구리 판", "Rank" : "희귀", "Amount" : 3}, {"Name" : "붉은 구리 주괴", "Rank" : "초희귀", "Amount" : 10}, {"Name" : "철 크리스탈", "Rank" : "초희귀", "Amount" : 1} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "스크롤 조각",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "아쿠아마린",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "엘릭서",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "전기석",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "중급 마력석",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "케이블",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 막대", "Rank" : "희귀", "Amount" : 10}, {"Name" : "구리 판", "Rank" : "희귀", "Amount" : 3}, {"Name" : "금 크리스탈", "Rank" : "영웅", "Amount" : 3}, {"Name" : "붉은 구리 주괴", "Rank" : "초희귀", "Amount" : 35} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "핑크기어",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "헬스톤",
+            "Type" : "Ore",
+            "Explain" : ""
+        }
+    ],
+    "전설" : [
+        {
+            "Name" : "곡괭이 스크롤",
+            "Type" : "Perc_craftItem",
+            "Research" : 1,
+            "TargetItem" : {"Name" : "스크롤 조각", "Rank" : "영웅"},
+            "Perc" : [25],
+            "Material" : [ {"Name" : "스크롤 조각", "Rank" : "영웅", "Amount" : 10} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "도끼 스크롤",
+            "Type" : "Perc_craftItem",
+            "Research" : 1,
+            "TargetItem" : {"Name" : "스크롤 조각", "Rank" : "영웅"},
+            "Perc" : [25],
+            "Material" : [ {"Name" : "스크롤 조각", "Rank" : "영웅", "Amount" : 10} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "미스릴",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "미스릴 가루",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "미스릴", "Rank" : "전설", "Amount" : 2}, {"Name" : "모래", "Rank" : "일반", "Amount" : 10} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "블랙기어",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "상급 마력석",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "아쿠아마린 크리스탈",
+            "Type" : "Perc_Ore",
+            "TargetOre" : {"Name" : "아쿠아마린", "Rank" : "영웅"},
+            "Perc" : [30],
+            "Explain" : ""
+        }
+    ],
+    "초월" : [ 
+        {
+            "Name" : "기어박스",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "강철 주괴", "Rank" : "일반", "Amount" : 40}, {"Name" : "붉은 구리 주괴", "Rank" : "초희귀", "Amount" : 40}, {"Name" : "블랙기어", "Rank" : "전설", "Amount" : 1}, {"Name" : "초록기어", "Rank" : "희귀", "Amount" : 20}, {"Name" : "파란기어", "Rank" : "초희귀", "Amount" : 12}, {"Name" : "핑크기어", "Rank" : "영웅", "Amount" : 4} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "다이아몬드 크리스탈",
+            "Type" : "Perc_Ore",
+            "TargetOre" : {"Name" : "다이아몬드", "Rank" : "영웅"},
+            "Perc" : [5],
+            "Explain" : ""
+        },
+        {
+            "Name" : "심연의 돌",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "아다만틴",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "아다만틴 가루",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "모래", "Rank" : "일반", "Amount" : 20}, {"Name" : "미스릴 가루", "Rank" : "전설", "Amount" : 1}, {"Name" : "아다만틴", "Rank" : "초월", "Amount" : 3} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "오리하르콘",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "최상급 마력석",
+            "Type" : "Ore",
+            "Explain" : ""
+        }
+    ],
+    "영원" : [
+        {
+            "Name" : "경험치 물약",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "", "Rank" : "", "Amount" : "-"} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "대형 기어박스",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "기어박스", "Rank" : "초월", "Amount" : 2}, {"Name" : "미스릴", "Rank" : "전설", "Amount" : 10}, {"Name" : "심연의 돌", "Rank" : "초월", "Amount" : 3}, {"Name" : "철 크리스탈", "Rank" : "초희귀", "Amount" : 20} ],
+            "Explain" : ""
+        },
+        {
+            "Name" : "에테르",
+            "Type" : "Ore",
+            "Explain" : ""
+        },
+        {
+            "Name" : "에테르 가루",
+            "Type" : "craftItem",
+            "Research" : 1,
+            "Material" : [ {"Name" : "돌 가루", "Rank" : "희귀", "Amount" : 30}, {"Name" : "아다만틴 가루", "Rank" : "초월", "Amount" : 1}, {"Name" : "에테르", "Rank" : "영원", "Amount" : 3} ],
+            "Explain" : ""
+        }
+    ],
+    "불멸" : [
+        {
+            "Name" : "강화석",
+            "Type" : "systemItem",
+            "Explain" : ""
+        },
+        {
+            "Name" : "닉변권",
+            "Type" : "systemItem",
+            "Explain" : ""
+        },
+        {
+            "Name" : "선물상자",
+            "Type" : "giftBox",
+            "Items" : [],
+            "Perc" : [],
+            "Explain" : ""
+        },
+        {
+            "Name" : "출석상자",
+            "Type" : "giftBox",
+            "Items" : [],
+            "Perc" : [],
+            "Explain" : ""
+        }
+    ]
+}
